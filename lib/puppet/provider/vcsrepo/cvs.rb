@@ -44,6 +44,10 @@ Puppet::Type.type(:vcsrepo).provide(:cvs, :parent => Puppet::Provider::Vcsrepo) 
     end
   end
 
+  def working_copy_exists?
+    File.directory?(File.join(@resource.value(:path), 'CVS'))
+  end
+
   private
 
   def tag_file
